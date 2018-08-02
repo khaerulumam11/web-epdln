@@ -8,7 +8,7 @@ echo '
   document.location ="login/login.php";
   </script>
   ';
-} else {
+} elseif ($_SESSION['role'] == "Admin Puski") {
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ echo '
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>e-RASIONAL</title>
+  <title>Aplikasi e-RASIONAL</title>
   <!-- Bootstrap core CSS-->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -84,12 +84,19 @@ $(function()
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">e-RASIONAL</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <center>
+          <a class="nav-link" href="dashboard_adminpuski.php">
+            <img src="https://pdln.dev.kominfo.go.id/logo.png" alt="logo" width='100px'><br>
+              <h4 style="color: #eff5f9 !important">Aplikasi e-RASIONAL</h4>
+          </a>
+        </center>
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="dashboard_adminpuski.php">
             <i class="fa fa-fw fa-dashboard"></i>
@@ -157,7 +164,7 @@ $(function()
             <a class="dropdown-item small" href="#">View all messages</a>
           </div>
         </li> -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
             <span class="d-lg-none">Alerts
@@ -211,7 +218,7 @@ $(function()
               </span>
             </div>
           </form>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" >
             <i class="fa fa-user"> </i>
@@ -221,7 +228,7 @@ $(function()
           </a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal" >
+        <a class="nav-link" href="../logout.php">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>
@@ -543,5 +550,15 @@ $(function()
 </script>
   </div>
 </body>
-<?php } ?>
+<?php
+}
+else{
+  echo '
+    <script language="javascript">
+    alert("Salah Masuk Kamar Boy!!");
+    document.location ="../adminsatker/dashboard_adminsatker.php";
+    </script>
+    ';
+}
+?>
 </html>

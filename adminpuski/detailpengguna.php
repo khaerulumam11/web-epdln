@@ -8,7 +8,7 @@ echo '
   document.location ="login/login.php";
   </script>
   ';
-} elseif ($_SESSION['role']=="Admin Satker") {
+} elseif ($_SESSION['role'] == "Admin Puski") {
 ?>
 
 <!DOCTYPE html>
@@ -45,9 +45,9 @@ echo '
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <center>
-          <a class="nav-link" href="dashboard_adminsatker.php">
+          <a class="nav-link" href="dashboard_adminpuski.php">
             <img src="https://pdln.dev.kominfo.go.id/logo.png" alt="logo" width='100px'><br>
-              <h4 style="color: #eff5f9 !important">Aplikasi e-RASIONAL</h4>
+		          <h4 style="color: #eff5f9 !important">Aplikasi e-RASIONAL</h4>
           </a>
         </center>
         </li>
@@ -63,14 +63,15 @@ echo '
             <span class="nav-link-text">Kegiatan</span>
           </a>
         </li>
+
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link" href="daftarperjadin.php">
             <i class="fa fa-fw fa-wrench"></i>
             <span class="nav-link-text">Perjalanan Dinas</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-          <a class="nav-link" href="../logout/logout.php">
+        <li class="nav-item" data-toggle="modal" data-target="#exampleModal" >
+          <a class="nav-link"href="../logout/logout.php">
             <i class="fa fa-fw fa-file"></i>
             <span class="nav-link-text">Logout</span>
           </a>
@@ -185,58 +186,53 @@ echo '
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
-
-
+      <div>
+        <h3>Detail Pengguna</h3>
+      </div>
+      <!-- Example DataTables Card-->
       <div class="card mb-3" id="tables">
         <div class="card-header" >
-          <i class="fa fa-table"></i> Daftar Kegiatan
-          <i style="margin-left:65%"><a href="tambahkegiatan.php"><button class="btn btn-primary " style="width:20%">Tambah Kegiatan</button></a></i></div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Nama Kegiatan</th>
-                  <th>Satuan Kerja</th>
-                  <th>Tanggal Mulai</th>
-                  <th>Tanggal Selesai</th>
+          <i class="fa fa-table"></i> Detail Pengguna
+          <?php
+          $id = $_GET['id'];
+          $results = mysqli_query($config, "SELECT * from user where id_user ='$id'");
+          $row = mysqli_fetch_array($results);
+          ?>
+        </div>
 
-                  <th>Bobot Prioritas</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
+        <div class="">
+          <div class="">
+            <table class="table" width="100%;" style="margin-top:20px;margin-left:20px" cellspacing="0">
+            <tr>
+            <td style="width:25%"><b>Nama</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['nama_pengguna'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Username</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['username'] ?></td>
+            </tr>
 
-                $results = mysqli_query($config, "SELECT * from kegiatan");
-
-                while ($row = mysqli_fetch_array($results)){
-                ?>
-                <tr>
-                  <td><?php echo $row['namakegiatan'] ?></td>
-                  <td><?php echo $row['satker'] ?></td>
-                  <td><?php echo $row['tglmulai'] ?></td>
-                  <td><?php echo $row['tglselesai'] ?></td>
-
-                  <td><?php echo $row['bobot'] ?></td>
-                <td>
-                  <center>
-                    <a style="text-decoration:none" href="tambahperjadin.php?id=<?php echo $row['id'];?>"><label class ="btn btn-primary" style="font-size:13px;color:white">Tambah Perjadin</label> </button></a>
-                  </td>
-              </tr>
-              <?php } ?>
-
-              </tbody>
+            <tr>
+            <td style="width:15%"><b>Role</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['role'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Satuan Kerja</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['satuan_kerja'] ?></td>
+            </tr>
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
-      <!-- Example DataTables Card-->
 
-    </div>
+
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
+
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
@@ -261,7 +257,7 @@ echo '
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="../logout.php" >Logout</a>
+            <a class="btn btn-primary" href="../logout.php">Logout</a>
           </div>
         </div>
       </div>
@@ -288,9 +284,9 @@ else{
   echo '
     <script language="javascript">
     alert("Salah Masuk Kamar Boy!!");
-    document.location ="../adminpuski/dashboard_adminpuski.php";
+    document.location ="../adminsatker/dashboard_adminsatker.php";
     </script>
     ';
 }
- ?>
+?>
 </html>

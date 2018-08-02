@@ -14,23 +14,47 @@
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
+  <style>
+  .input-container {
+ /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+.input-field {
+    width: 100%;
+    padding: 5px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid dodgerblue;
+}
+  </style>
 </head>
 
-<body class="bg-dark">
+<body class="bg-info">
   <div class="container">
-    <div class="card card-login mx-auto mt-5">
+    <div class="card mx-auto" style="margin: 90px 0 0 0; width: 350px;padding:10px">
       <center><div><img src="../img/kominfo.jpg" style="width:100px; margin-top:20px"></div><center>
-      <center><strong><div style="font-size:20px; margin-top:30px">Aplikasi e-RASIONAL</div></strong></center>
+      <center><strong><div style="font-size:20px; margin-top:20px">Aplikasi e-RASIONAL</div></strong></center>
       <center><strong><div  style="font-size:15px; ">Masukkan username dan password anda</div></strong></center>
       <div class="card-body">
         <form action="login_process.php" method="post">
-          <div class="form-group">
-            <label>Username</label>
-            <input class="form-control" type="text" name="user" placeholder="Username" required>
+          <div class="form-group input-container">
+            <i class="fa fa-user icon"></i>
+            <input class="input-field form-control" type="text" name="user" placeholder="Username" required>
         </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" id="exampleInputPassword1" name="pass" type="password" placeholder="Password" required>
+          <div class="form-group input-container">
+             <i class="fa fa-key icon"></i>
+            <input class="input-field form-control" id="exampleInputPassword1" name="pass" type="password" placeholder="Password" required>
           </div>
           <!-- <div class="form-group">
             <div class="form-check">

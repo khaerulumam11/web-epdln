@@ -8,7 +8,7 @@ echo '
   document.location ="login/login.php";
   </script>
   ';
-} else {
+} elseif ($_SESSION['role']=="Admin Satker") {
 ?>
 
 <!DOCTYPE html>
@@ -102,12 +102,19 @@ $(function()
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">e-RASIONAL</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <center>
+          <a class="nav-link" href="dashboard_adminsatker.php">
+            <img src="https://pdln.dev.kominfo.go.id/logo.png" alt="logo" width='100px'><br>
+              <h4 style="color: #eff5f9 !important">Aplikasi e-RASIONAL</h4>
+          </a>
+        </center>
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="dashboard_adminsatker.php">
             <i class="fa fa-fw fa-dashboard"></i>
@@ -170,7 +177,7 @@ $(function()
             <a class="dropdown-item small" href="#">View all messages</a>
           </div>
         </li> -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
             <span class="d-lg-none">Alerts
@@ -224,7 +231,7 @@ $(function()
               </span>
             </div>
           </form>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" >
             <i class="fa fa-user"> </i>
@@ -264,7 +271,7 @@ $(function()
                 <div class="form-group">
 
                         <!-- <input style="width:80%;height:40px" class="form-control" type="hidden" name="nama" placeholder="Nama Kegiatan" readonly></input> -->
-                        <input style="width:100%;height:40px" class="form-control" type="text" name="id_perjadin" placeholder="Nama Kegiatan" value="<?php echo $row['id_perjadin'] ?>" ></input>
+                        <input style="width:100%;height:40px" class="form-control" type="hidden" name="id_perjadin" placeholder="Nama Kegiatan" value="<?php echo $row['id_perjadin'] ?>" ></input>
                   <b><label required>Nama Kegiatan</label></b>
                     <input style="width:80%;height:40px" class="form-control" type="text" name="nama" placeholder="Nama Kegiatan" readonly value="<?php echo $row['namakegiatan'] ?>"></input>
 
@@ -571,5 +578,14 @@ document.getElementById('idpegawai').value = prdName1[id].id;
 </script>
   </div>
 </body>
-<?php } ?>
+<?php }
+else{
+  echo '
+    <script language="javascript">
+    alert("Salah Masuk Kamar Boy!!");
+    document.location ="../adminpuski/dashboard_adminpuski.php";
+    </script>
+    ';
+}
+ ?>
 </html>

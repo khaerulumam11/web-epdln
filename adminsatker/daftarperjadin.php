@@ -8,7 +8,7 @@ echo '
   document.location ="login/login.php";
   </script>
   ';
-} else {
+} elseif ($_SESSION['role']=="Admin Satker") {
 ?>
 
 <!DOCTYPE html>
@@ -38,14 +38,21 @@ echo '
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">e-RASIONAL</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="dashboard_adminpuski.php">
+          <center>
+          <a class="nav-link" href="dashboard_adminsatker.php">
+            <img src="https://pdln.dev.kominfo.go.id/logo.png" alt="logo" width='100px'><br>
+              <h4 style="color: #eff5f9 !important">Aplikasi e-RASIONAL</h4>
+          </a>
+        </center>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="dashboard_adminsatker.php">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
@@ -106,7 +113,7 @@ echo '
             <a class="dropdown-item small" href="#">View all messages</a>
           </div>
         </li> -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
             <span class="d-lg-none">Alerts
@@ -160,7 +167,7 @@ echo '
               </span>
             </div>
           </form>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" >
             <i class="fa fa-user"> </i>
@@ -188,7 +195,7 @@ echo '
           <i style="margin-left:60%"><a href="tambahperjadin2.php"><button class="btn btn-primary " style="width:20%">Tambah Perjalanan Dinas</button></a></i></div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
               <thead>
                 <tr>
                   <th>Nama Kegiatan</th>
@@ -213,23 +220,22 @@ echo '
                   <td><?php echo $row['status'] ?></td>
                   <?php $id = $row['id'] ?>
                   <?php
-                  if ($row['status']=="Pengajuan Baru") {
+                  if ($row['status']=="PengajuanBaru") {
                     // code...
                     echo '
                     <td>
                       <center>
-                        <a href="detailperjadin.php?id='. $id .'"><button style="width:100px;height:50px">Detail Perjadin </button>  </a><br>
-                        <a href="editkegiatan.php?id= '. $id .'"><button style="width:100px;height:50px">Edit Perjadin</button>
-                        </a><br>
-                        <center><a href="../proses/hapusperjadin.php?id='. $id.'"><button style="width:100px;height:50px">
-                        Hapus Perjadin</button></a>
+                        <a style="text-decoration:none" href="detailperjadin.php?id='. $id .'"><label style="font-size:13px;color:white" class="btn btn-primary btn-block">Detail Perjadin</label>  </a>
+                        <a style="text-decoration:none" href="editkegiatan.php?id= '. $id .'"> <label style="font-size:13px;color:white" class="btn btn-warning btn-block">Edit Perjadin</label>
+                        </a>
+                        <center><a style="text-decoration:none" href="../proses/hapusperjadin.php?id='. $id.'"><label style="font-size:13px;color:white"class="btn btn-danger btn-block">Hapus Perjadin</label></a>
                       </td>
                     ';
                   } else {
                     echo '
                     <td>
                     <center>
-                      <a href="detailperjadin.php?id='. $id .'"><button style="width:100px;height:50px">Detail Perjadin </button>  </a>
+                      <a style="text-decoration:none" href="detailperjadin.php?id='. $id .'"><label style="font-size:13px;color:white" class="btn btn-primary btn-block">Detail Perjadin</label> </a>
                       </center>
                       </td>
                     ';
@@ -294,5 +300,14 @@ echo '
     <script src="../js/sb-admin-charts.min.js"></script>
   </div>
 </body>
-<?php } ?>
+<?php }
+else{
+  echo '
+    <script language="javascript">
+    alert("Salah Masuk Kamar Boy!!");
+    document.location ="../adminpuski/dashboard_adminpuski.php";
+    </script>
+    ';
+}
+ ?>
 </html>

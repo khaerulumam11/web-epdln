@@ -7,10 +7,13 @@ $results = mysqli_query($config, 'SELECT perjadin.no_pengajuan as no,perjadin.st
 $response = array();
 
 // if(mysqli_num_rows($results) > 0){
-while ($row  = mysqli_fetch_assoc($results))
+while ($row  = mysqli_fetch_array($results))
 {
-
-  $response[] = $row;
+  if ($row[0]['id_delegasi']==0 && $row[0]['no']==null){
+    echo "Data Tidak Ada";
+  }else{
+    $response[] = $row;
+  }
 	// $response[] = $row['id'];
   // $response[] = $row['namakegiatan'];
   // $response[] = $row['id_delegasi'];
@@ -18,14 +21,15 @@ while ($row  = mysqli_fetch_assoc($results))
   // $response[] = $row['no'];
 }
 
-if ($response == null) {
-  // code...
-  echo json_encode($response["message"] = "Data Tidak Ada");
-}
-else{
+// if ($response) {
+//   // code...
+//   echo json_encode($response["message"] = "Data Tidak Ada");
+// }
+// else {
 
-echo json_encode($response);
-}
+  echo json_encode($response);  // code...
+
+
 // echo json_encode($response);
 // }else{
 //   $response["error"] = TRUE;

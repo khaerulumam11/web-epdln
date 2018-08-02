@@ -8,7 +8,7 @@ echo '
   document.location ="login/login.php";
   </script>
   ';
-} else {
+} elseif ($_SESSION['role'] == "Admin Puski") {
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,6 @@ echo '
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Page level plugin CSS-->
   <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
 </head>
@@ -35,30 +34,25 @@ echo '
   tr th{
     text-align: center;
   }
-
-  .row.no-gutter [class*='col-'] {
-  padding-right: 10px;
-  padding-left: 10px; }
-
-.row.gutter [class*='col-'] {
-  padding-right: 15px;
-  padding-left: 15px; }
-
-.form-horizontal .form-group.no-gutter {
-  padding-right: 10px;
-  padding-left: 10px; }
 </style>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">e-RASIONAL</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <center>
           <a class="nav-link" href="dashboard_adminpuski.php">
+            <img src="https://pdln.dev.kominfo.go.id/logo.png" alt="logo" width='100px'><br>
+		          <h4 style="color: #eff5f9 !important">Aplikasi e-RASIONAL</h4>
+          </a>
+        </center>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="dashboard_adminsatker.php">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
@@ -69,20 +63,15 @@ echo '
             <span class="nav-link-text">Kegiatan</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Daftar Pengguna">
-          <a class="nav-link" href="daftarpengguna.php">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Daftar Pengguna</span>
-          </a>
-        </li>
+
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-          <a class="nav-link" href="detailperjadin.php">
+          <a class="nav-link" href="daftarperjadin.php">
             <i class="fa fa-fw fa-wrench"></i>
-            <span class="nav-link-text">Detail Perjadin</span>
+            <span class="nav-link-text">Perjalanan Dinas</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-          <a class="nav-link" href="../logout.php">
+        <li class="nav-item" data-toggle="modal" data-target="#exampleModal" >
+          <a class="nav-link"href="../logout/logout.php">
             <i class="fa fa-fw fa-file"></i>
             <span class="nav-link-text">Logout</span>
           </a>
@@ -124,7 +113,7 @@ echo '
             <a class="dropdown-item small" href="#">View all messages</a>
           </div>
         </li> -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
             <span class="d-lg-none">Alerts
@@ -178,7 +167,7 @@ echo '
               </span>
             </div>
           </form>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" >
             <i class="fa fa-user"> </i>
@@ -188,7 +177,7 @@ echo '
           </a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="../logout/logout.php" >
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal" >
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>
@@ -197,141 +186,103 @@ echo '
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">My Dashboard</li>
-      </ol>
-
-<div style="margin-left:5%">
-      <div class="w3-container w3-cell" style="width:30%">
-      <div class="card mb-3">
-        <center>
-        <div class="card-header" >
-        <b>  <label style="font-size:60px"></label> Jumlah Kegiatan </b>
-        </div>
-        <div class="card-body">
-          <?php
-          $test = mysqli_query($config, "SELECT count(id) as total from kegiatan");
-
-          $row = mysqli_fetch_array($test);
-
-          if ($row['total'] == 0) {
-            // code...
-            echo '
-            <p style="font-size:50px"> 0 <p>
-            ';
-          }
-          else{
-            echo '
-              <p style="font-size:50px"> '.$row['total'].' <p>
-            ';
-          }
-
-          ?>
-
-            <p style="font-size:20px">Total Kegiatan<p>
-        </div>
-      </center>
-      </div>
-    </div>
-
-    <div class="w3-container w3-cell" style="width:30%">
-    <div class="card mb-3">
-      <center>
-      <div class="card-header" >
-        <b><label style="font-size:60px"></label> Jumlah Perjalanan Dinas</b>
-      </div>
-      <div class="card-body">
-        <?php
-        $test = mysqli_query($config, "SELECT count(id) as total from perjadin");
-
-        $row = mysqli_fetch_array($test);
-        ?>
-        <p style="font-size:50px"><?php echo $row['total'] ?><p>
-          <p style="font-size:20px">Total Perjalanan Dinas<p>
-      </div>
-    </center>
-    </div>
-  </div>
-
-  <div class="w3-container w3-cell" style="width:30%">
-  <div class="card mb-3">
-    <center>
-    <div class="card-header" >
-    <b>  <label style="font-size:60px"></label> Jumlah Delegasi </b>
-    </div>
-    <div class="card-body">
-      <p style="font-size:50px">0<p>
-        <p style="font-size:20px">Total Delegasi<p>
-    </div>
-  </center>
-  </div>
-</div>
-</div>
-
+      <!-- <div>
+        <h3>Detail Kegiatan</h3>
+      </div> -->
+      <!-- Example DataTables Card-->
       <div class="card mb-3" id="tables">
         <div class="card-header" >
-          <i class="fa fa-table"></i> Daftar Kegiatan
+          <i class="fa fa-table"></i> Detail Kegiatan
+          <?php
+          $id = $_GET['id'];
+          $results = mysqli_query($config, "SELECT * from kegiatan where id='$id'");
+          $row = mysqli_fetch_array($results);
+          ?>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <th>Nama Kegiatan</th>
-                <th>Satuan Kerja</th>
-                <th>Tanggal Mulai</th>
-                <th>Tanggal Selesai</th>
-                <th>Jumlah Perjadin</th>
-                <th>Bobot Prioritas</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>Nama Kegiatan</th>
-                <th>Satuan Kerja</th>
-                <th>Tanggal Mulai</th>
-                <th>Tanggal Selesai</th>
-                <th>Jumlah Perjadin</th>
-                <th>Bobot Prioritas</th>
-                <th>Aksi</th>
-              </tr>
-            </tfoot>
-            <tbody>
-              <?php
 
-              $results = mysqli_query($config, "SELECT * from kegiatan");
-
-              while ($row = mysqli_fetch_array($results)){
-              ?>
-              <tr>
-                <td><?php echo $row['namakegiatan'] ?></td>
-                <td><?php echo $row['satker'] ?></td>
-                <td><?php echo $row['tglmulai'] ?></td>
-                <td><?php echo $row['tglselesai'] ?></td>
-                
-                <td></td>
-                <td><?php echo $row['bobot'] ?></td>
-              <td>
-                <center>
-                  <button style="width:100px;height:50px">DETAIL </button>
-                  <a href="editkegiatan.php?id=<?php echo $row['id'];?>"><button style="width:100px;height:50px">Edit Kegiatan</button></a>
-                  <center><a href="../proses/hapuskegiatan.php?id=<?php echo $row['id'];?>"><button style="width:100px;height:50px">Hapus Kegiatan</button></a>
-                </td>
+        <div class="">
+          <div class="">
+            <table class="table" width="100%;" style="margin-top:20px;margin-left:20px" cellspacing="0">
+            <tr>
+            <td style="width:25%"><b>Nama Kegiatan</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['namakegiatan'] ?></td>
             </tr>
-            <?php } ?>
+            <tr>
+            <td style="width:15%"><b>Pertemuan Ke- </b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['pertemuanke'] ?></td>
+            </tr>
 
-
-              </tbody>
+            <tr>
+            <td style="width:15%"><b>Deskripsi Kegiatan</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['deskripsi'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Level</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['level'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Jenis Kegiatan</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['jeniskegiatan'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Bobot Prioritas</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['bobot'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Tanggal Mulai</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['tglmulai'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Tanggal Akhir</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['tglselesai'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Satuan Kerja</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['satker'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Lokasi Kegiatan</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['kota'] ?> , <?php echo $row['negara'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Kompetensi</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['kompetensi'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Komponen Biaya</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['biaya'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Deadline</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['deadline'] ?></td>
+            </tr>
+            <tr>
+            <td style="width:15%"><b>Jumlah Delegasi</b></td>
+              <td style="width:1%">:</td>
+              <td><?php echo $row['jmldelegasi'] ?></td>
+            </tr>
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
+
+
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
+
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
@@ -377,5 +328,15 @@ echo '
     <script src="../js/sb-admin-charts.min.js"></script>
   </div>
 </body>
-<?php } ?>
+<?php
+}
+else{
+  echo '
+    <script language="javascript">
+    alert("Salah Masuk Kamar Boy!!");
+    document.location ="../adminsatker/dashboard_adminsatker.php";
+    </script>
+    ';
+}
+?>
 </html>
