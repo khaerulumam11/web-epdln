@@ -5,7 +5,7 @@ if (empty($_SESSION['username'])) {
 echo '
   <script language="javascript">
   alert("Login Terlebih Dahulu");
-  document.location ="login/login.php";
+    document.location ="../login/login.php";
   </script>
   ';
 } elseif ($_SESSION['role']=="Admin Satker") {
@@ -297,7 +297,7 @@ $(function()
                   $jsArray = "var prdName = new Array();\n";
                   $jsArray2 = "var prdName1 = new Array();\n";
                   echo '<select style="width:80%;height:40px" class="form-control" name="namapeg" onchange="changeValue(this.value)">';
-                  echo '<option disabled selected>--Pilih Bobot Pegawai--</option>';
+                  echo '<option disabled selected>--Pilih Nama Pegawai--</option>';
 
                   while ($row = mysqli_fetch_array($results)){
                     echo '<option value="' . $row['nama_pegawai'] . '">' . $row['nama_pegawai'] . '</option>';
@@ -310,7 +310,7 @@ $(function()
                 </select>
 
         </div>
-          <input style="width:100%;height:40px" class="form-control" type="text" id="idpegawai" name="id_pegawai" placeholder="Nama Kegiatan" ></input>
+          <input style="width:100%;height:40px" class="form-control" type="hidden" id="idpegawai" name="id_pegawai" placeholder="Nama Kegiatan" ></input>
       </div>
             <div  class="form-group">
 

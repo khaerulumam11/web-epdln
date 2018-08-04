@@ -5,7 +5,7 @@ if (empty($_SESSION['username'])) {
 echo '
   <script language="javascript">
   alert("Login Terlebih Dahulu");
-  document.location ="login/login.php";
+  document.location ="../login/login.php";
   </script>
   ';
 } elseif ($_SESSION['role'] == "Admin Puski") {
@@ -296,11 +296,6 @@ echo '
     $id = $_GET['id'];
     $results = mysqli_query($config, "SELECT perjadin.no_pengajuan as no,perjadin.id, perjadin.status_perjadin ,kegiatan.id as id_kegiatan,kegiatan.namakegiatan, kegiatan.jeniskegiatan, kegiatan.jmldelegasi, kegiatan.satker, kegiatan.tglmulai, kegiatan.tglselesai,kegiatan.kompetensi from kegiatan join perjadin on perjadin.id_kegiatan = kegiatan.id  where perjadin.id = '$id' ");
     $row = mysqli_fetch_array($results);
-
-    if ($row['status_perjadin'] == "Acc") {
-      // code...
-      echo '<a href="../berkas/Exit Permit.docx"><button style="width:200px;height:50px; margin-left:80%; margin-bottom:3%" class="btn btn-primary">Download Exit Permit</button></a>';
-    }
     ?>
 
     <!-- /.container-fluid-->

@@ -5,7 +5,7 @@ if (empty($_SESSION['username'])) {
 echo '
   <script language="javascript">
   alert("Login Terlebih Dahulu");
-  document.location ="login/login.php";
+  document.location ="../login/login.php";
   </script>
   ';
 } elseif ($_SESSION['role'] == "Admin Puski" ) {
@@ -291,7 +291,7 @@ echo '
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" >
               <thead>
                 <th>Nama Kegiatan</th>
                 <th>Satuan Kerja</th>
@@ -318,10 +318,10 @@ echo '
 
                 <td><?php echo $row['bobot'] ?></td>
               <td>
-                <center>
-                  <button style="width:120px;height:40px; border:0px; background:#448aff; margin-bottom:10px; padding: 3px "><label style="font-size:13px;color:white">Daftar Perjadin</label> </button>
-                  <a href="editkegiatan.php?id=<?php echo $row['id'];?>"><button style="width:120px;height:40px; border:0px; background:#ffc107; margin-bottom:10px; padding: 3px "><label style="font-size:13px;color:white">Edit Kegiatan</label></button></a>
-                  <center><a href="../proses/hapuskegiatan.php?id=<?php echo $row['id'];?>"><button style="width:120px;height:40px; border:0px; background:#f44336; margin-bottom:10px; padding: 3px "><label style="font-size:13px;color:white">Hapus Kegiatan</label></button></a>
+
+                  <a style="text-decoration:none" href="detailkegiatan.php?id=<?php echo $row['id'];?>"><label style="font-size:13px;color:white; width:80%" class="btn btn-primary">Detail Kegiatan</label>
+                  <a style="text-decoration:none" href="editkegiatan.php?id=<?php echo $row['id'];?>"><label style="font-size:13px;color:white; width:80%" class="btn btn-warning">Edit Kegiatan</label></a>
+                  <a style="text-decoration:none" href="../proses/hapuskegiatan.php?id=<?php echo $row['id'];?>"><label style="font-size:13px;color:white; width:80%" class="btn btn-danger">Hapus Kegiatan</label></a>
                 </td>
             </tr>
             <?php } ?>

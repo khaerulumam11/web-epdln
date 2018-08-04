@@ -5,7 +5,7 @@ if (empty($_SESSION['role'])) {
 echo '
   <script language="javascript">
   alert("Login Terlebih Dahulu");
-  document.location ="login/login.php";
+  document.location ="../login/login.php";
   </script>
   ';
 }

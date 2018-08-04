@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Login | E-PDLN</title>
+  <title>Login | E-RASIONAL</title>
   <!-- Bootstrap core CSS-->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -48,10 +48,13 @@
       <center><strong><div  style="font-size:15px; ">Masukkan username dan password anda</div></strong></center>
       <div class="card-body">
         <form action="login_process.php" method="post">
+          <label>Username</label>
           <div class="form-group input-container">
+
             <i class="fa fa-user icon"></i>
             <input class="input-field form-control" type="text" name="user" placeholder="Username" required>
         </div>
+        <label>Password</label>
           <div class="form-group input-container">
              <i class="fa fa-key icon"></i>
             <input class="input-field form-control" id="exampleInputPassword1" name="pass" type="password" placeholder="Password" required>

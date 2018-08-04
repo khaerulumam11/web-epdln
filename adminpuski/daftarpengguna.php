@@ -5,7 +5,7 @@ if (empty($_SESSION['username'])) {
 echo '
   <script language="javascript">
   alert("Login Terlebih Dahulu");
-  document.location ="login/login.php";
+  document.location ="../login/login.php";
   </script>
   ';
 } elseif ($_SESSION['role'] == "Admin Puski") {

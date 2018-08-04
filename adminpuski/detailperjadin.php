@@ -5,7 +5,7 @@ if (empty($_SESSION['username'])) {
 echo '
   <script language="javascript">
   alert("Login Terlebih Dahulu");
-  document.location ="login/login.php";
+  document.location ="../login/login.php";
   </script>
   ';
 } elseif ($_SESSION['role'] == "Admin Puski") {
@@ -203,8 +203,8 @@ echo '
                   <th>Nama Kegiatan</th>
                   <th>No Pengajuan</th>
                   <th>Maksimal Delegasi</th>
-
                   <th>Status Perjadin</th>
+                  <th>Alasan</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -212,7 +212,7 @@ echo '
               <tbody>
                 <?php
 
-            $results = mysqli_query($config, "SELECT perjadin.no_pengajuan as no,perjadin.status_perjadin as status ,perjadin.id as id ,kegiatan.id as id_kegiatan,kegiatan.namakegiatan, kegiatan.jmldelegasi from kegiatan inner join perjadin on perjadin.id_kegiatan = kegiatan.id ");
+            $results = mysqli_query($config, "SELECT perjadin.no_pengajuan as no,perjadin.status_perjadin as status,perjadin.alasan,  perjadin.id as id ,kegiatan.id as id_kegiatan,kegiatan.namakegiatan, kegiatan.jmldelegasi from kegiatan inner join perjadin on perjadin.id_kegiatan = kegiatan.id ");
           //  $results = mysqli_query($config, "SELECT * from kegiatan");
                 while ($row = mysqli_fetch_array($results)){
                 ?>
@@ -220,8 +220,8 @@ echo '
                   <td><?php echo $row['namakegiatan'] ?></td>
                   <td><?php echo $row['no'] ?></td>
                   <td><?php echo $row['jmldelegasi'] ?> orang</td>
-
                   <td><?php echo $row['status'] ?></td>
+                  <td><?php echo $row['alasan'] ?></td>
                   <?php $id = $row['id'] ?>
 
                     <td>
@@ -230,8 +230,8 @@ echo '
                         // code...
                         echo '
                         <center>
-                            <a style="text-decoration:none"  href="detailperjadin2.php?id='. $id .';?>">  <label style="font-size:13px;color:white" class="btn btn-primary btn-block">Detail Perjadin</label> </button></a>
-                              <a style="text-decoration:none"  href="detailperjadin2.php?id='. $id .';?>">  <label style="font-size:13px;color:white" class="btn btn-secondary btn-block">Download Laporan</label> </a>
+                            <a style="text-decoration:none"  href="detailperjadin2.php?id='. $id .';?>">  <label style="font-size:13px;color:white" class="btn btn-primary btn-block">Detail Perjadin</label></a>
+                            <a style="text-decoration:none"  href="../print.php?id='. $id .';?>">  <label style="font-size:13px;color:white" class="btn btn-secondary btn-block">Download Laporan</label> </a>
                             </center>
                             ';
                       }

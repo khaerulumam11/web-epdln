@@ -1,0 +1,105 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+
+    <!-- Custom styles for this template-->
+
+    <title>Surat Perjalanan Dinas</title>
+  </head>
+  <style media="screen">
+  tr th{
+    text-align: center;
+  }
+
+  table {
+    border-collapse:collapse;
+    table-layout:fixed;width: 630px;
+  }
+  table td {
+    word-wrap:break-word;
+    width: 20%;
+  }
+  </style>
+  <body>
+    <!-- <img src="https://pdln.dev.kominfo.go.id/logo.png" alt="logo" width='100px'><br>
+      <h4 style="color: #eff5f9 !important">Aplikasi e-RASIONAL</h4> -->
+<table style="width:100%">
+  <tr>
+    <td rowspan="4">
+      <img src="https://ppidkemkominfo.files.wordpress.com/2011/03/logo-kominfo-copy.jpg" style="margin-left:-20px;width:250px;">
+    </td>
+  </tr>
+  <tr>
+    <td style="width:100%">
+      <b><label style="font-size:30px; margin-left:15px">KEMENTERIAN KOMUNIKASI DAN INFORMATIKA</label></b> <br>
+      <b><label style="font-size:25px; margin-left:15px">SEKRETARIS JENDERAL</label></b><br>
+      <b><label style="font-size:25px; margin-left:15px">PUSAT KELEMBAGAAN INTERNASIONAL</label></b><br>
+      <i><label style="font-size:20px; margin-left:15px">Menuju Masyarakat Informasi Indonesia</label></i><br>
+      <label style="font-size:15px; margin-left:15px">Jl. Medan Merdeka 9, Jakarta 10110 Telp.(021) 3865189 Fax. (021) 3440858 www.kominfo.go.id </label>
+    </td>
+
+  </tr>
+</table>
+<hr style="border-width:3px;background:black">
+  <div style="margin-left:80px; margin-top:50px">
+<label style="margin-left:400px">  Jakarta, 9 Juli 2018 </label> <br><br>
+Nomor		: B-0003/KOMINFO/SJ/KU.01.05/07/2018 <br>
+Perihal		: Permohonan Izin Perjalanan Dinas Luar Negeri ke Singapore<br>
+Lampiran    : 1 (satu berkas) <br><br>
+
+Kepada Yth.<br>
+Sekretaris Kementerian Sekretariat Negara RI<br>
+Up. Kepala Biro Kerjasama Teknik Luar Negeri<br>
+Kementerian Sekretariat Negara<br>
+di  Jakarta<br><br>
+
+Sehubungan dengan tawaran "1st Pertemuan Bilateral RI India" pada tanggal 2 Juli 2018 - 2 Juli 2018 di Singapore, Singapore, bersama ini kami mohon bantuan Saudari kiranya dapat memberikan persetujuan keberangkatan bagi peserta dari Kementerian Komunikasi dan Informatika yang akan mengikuti pelatihan dimaksud dengan nama-nama seperti dibawah ini.<br><br>
+Adapun seluruh biaya yang timbul bagi nama-nama yang bersangkutan untuk mengikuti pelatihan tersebut (berangkat tanggal 2 Juli 2018 dan kembali ke Indonesia pada tanggal 2 Juli 2018), akan ditanggung oleh DIPA Direktorat Jenderal SDPPI Kementerian Kominfo TA 2017.<br><br>
+Berikut nama - nama yang akan berangkat :
+  <div style="width:80%">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>NIP</th>
+      <th>Jabatan</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <?php
+
+    $results = mysqli_query($config, "SELECT * from kegiatan");
+
+    while ($row = mysqli_fetch_array($results)){
+    ?>
+    <tr>
+      <td><?php echo $row['namakegiatan'] ?></td>
+      <td><?php echo $row['satker'] ?></td>
+      <td><?php echo $row['tglmulai'] ?></td>
+      <td><?php echo $row['tglselesai'] ?></td>
+  </tr>
+  <?php } ?>
+
+
+    </tbody>
+</table>
+
+</div>
+<br><br>
+
+Demikian disampaikan, atas perhatian dan kerjasamanya kami ucapkan terima kasih.
+<br><br><br><br>
+
+<label style="margin-left:400px">Sekretaris Jenderal,</label><br><br><br><br><br>
+<br><br>
+ <label style="margin-left:400px">Farida Dwi Cahyarini</label><br><br>
+Tembusan Yth.:<br>
+INSPEKTORAT JENDERAL
+
+</div>
+</body>
+</html>

@@ -5,7 +5,7 @@ if (empty($_SESSION['username'])) {
 echo '
   <script language="javascript">
   alert("Login Terlebih Dahulu");
-  document.location ="login/login.php";
+    document.location ="../login/login.php";
   </script>
   ';
 } elseif ($_SESSION['role']=="Admin Satker") {
@@ -202,7 +202,7 @@ echo '
           $id_perjadin = $row['id_perjadin'];
           if ($row['jmldelegasi'] == $row['count_delegasi']) {
             echo '
-          <br><i ><label style="background: red;">Kuota Delegasi Sudah Maksimal</label></i></div>
+          <br><i ><label style="background: red; width:100%; color:white">Kuota Delegasi Sudah Maksimal</label></i></div>
             ';
           }
           else {
@@ -298,7 +298,10 @@ echo '
                   <td><?php echo $row['nik'] ?></td>
                   <td><?php echo $row['jabatan'] ?></td>
                   <td> <a style="text-decoration:none" href="detaildelegasi.php?id=<?php echo $row['id'];?>"><label class="btn btn-primary btn-block">Detail Delegasi</label></a>
+                    <a style="text-decoration:none" href="../proses/hapusdelegasi.php?id=<?php echo $row['id'];?>"><label class="btn btn-danger btn-block">Hapus Delegasi</label></a>
+
                   </td>
+
               </tr>
               <?php } ?>
 
